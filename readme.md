@@ -131,9 +131,10 @@ sample-wp-blocks/
 │           ├── frontend.scss     # Frontend styles
 │           └── common.scss       # Common styles
 ├── build/                        # Compiled files (auto-generated)
+├── .gitignore                    # Git ignore rules
 ├── index.php                     # Main plugin file
 ├── package.json                  # Dependencies and scripts
-└── readme.txt                    # This file
+└── readme.md                     # This file
 ```
 
 = Creating New Blocks =
@@ -148,6 +149,7 @@ sample-wp-blocks/
 3. **Update package.json** scripts to include your new block
 4. **Register the block** in `index.php`
 5. **Build the block**: `npm run build`
+6. **Commit changes**: The `.gitignore` file ensures only source files are tracked
 
 = Block Development Tips =
 
@@ -176,13 +178,19 @@ sample-wp-blocks/
 - Check for version conflicts in package.json
 - Verify React 18 compatibility
 
+**Version control:**
+- The `.gitignore` file is included to exclude build files, dependencies, and system files
+- Only source code and configuration files are tracked in git
+- Run `git status` to verify only intended files are staged
+
 = Contributing =
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
 4. Test thoroughly
-5. Submit a pull request
+5. Ensure `.gitignore` is working correctly (no build files in commits)
+6. Submit a pull request
 
 = Resources =
 
