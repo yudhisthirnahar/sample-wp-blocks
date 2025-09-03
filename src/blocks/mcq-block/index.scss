@@ -1,0 +1,49 @@
+.swpb-mcq-block {
+	background-color: lightblue;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 10px;
+
+	.swpb-mcq-answers-title {
+		font-size: 12px;
+	}
+
+	.swpb-mcq-answer-text-control > div {
+		margin-bottom: 0;
+	}
+
+	.swpb-mcq-mark-as-correct-answer {
+
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
+
+		.dashicons-star-empty {
+			transition: transform 0.5s ease-out;
+	
+			&:hover {
+				color: green;
+				transform: scale(1.25) rotate(12deg);
+			}
+		}
+
+		.dashicons-star-filled {
+			color: green;
+		}
+	}
+
+	.swpb-mcq-delete-answer {
+		color: red;
+
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
+	}
+
+	.swpb-mcq-add-answer {
+		margin-top: 10px;
+	}
+}

@@ -1,0 +1,28 @@
+{
+  "name": "sample-wp-blocks",
+  "version": "1.0.0",
+  "description": "A sample WordPress blocks plugin",
+  "scripts": {
+    "build:mcq": "wp-scripts build src/blocks/mcq-block/index.js src/blocks/mcq-block/frontend.js --output-path=build/mcq-block",
+    "build:feature-author": "wp-scripts build src/blocks/feature-author-block/index.js --output-path=build/feature-author-block",
+    "build:demo": "wp-scripts build src/blocks/demo-block/index.js --output-path=build/demo-block",
+    "build:feature-wc-product": "wp-scripts build src/blocks/feature-wc-product-block/index.js src/blocks/feature-wc-product-block/frontend.js --output-path=build/feature-wc-product-block",
+    "build": "npm run build:mcq && npm run build:feature-author && npm run build:demo && npm run build:feature-wc-product",
+    "start:mcq": "wp-scripts start src/blocks/mcq-block/index.js src/blocks/mcq-block/frontend.js --output-path=build/mcq-block",
+    "start:feature-author": "wp-scripts start src/blocks/feature-author-block/index.js --output-path=build/feature-author-block",
+    "start:demo": "wp-scripts start src/blocks/demo-block/index.js --output-path=build/demo-block",
+    "start:feature-wc-product": "wp-scripts start src/blocks/feature-wc-product-block/index.js src/blocks/feature-wc-product-block/frontend.js --output-path=build/feature-wc-product-block",
+    "start": "npm run start:mcq & npm run start:feature-author & npm run start:demo & npm run start:feature-wc-product",
+    "clean": "rm -rf build/",
+    "rebuild": "npm run clean && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.21.0"
+  },
+  "dependencies": {
+    "react-dom": "^18.3.1"
+  }
+}
