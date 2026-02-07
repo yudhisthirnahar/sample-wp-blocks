@@ -29,10 +29,22 @@ jobs:
     - name: 🛠 Build JS Assets
       run: npm run build
 
+    # Setup SSH (required for custom port)
+    - name: 🔑 Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -p 65002 217.21.71.60 >> ~/.ssh/known_hosts
+
+    # Deploy to server via rsync
     - name: 📂 Sync Files
-      uses: SamKirkland/web-deploy@v1
-      with:
-        target-server: demos.amplifywp.com
-        remote-user: u128119881
-        private-ssh-key: ${{ secrets.SSH_KEY }}
-        destination-path: /public_html/wp-content/plugins/sample-wp-blocks
+      run: |
+        rsync -avz --delete \
+          --exclude='.git' \
+          --exclude='.github' \
+          --exclude='node_modules' \
+          --exclude='*.log' \
+          -e "ssh -p 65002" \
+          ./ \
+          u128119881@217.21.71.60:/public_html/wp-content/plugins/sample-wp-blocks
