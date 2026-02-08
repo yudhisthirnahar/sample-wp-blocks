@@ -29,23 +29,10 @@ jobs:
     - name: 🛠 Build JS Assets
       run: npm run build
 
-    - name: 🔑 Setup SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -p 65002 217.21.71.60 >> ~/.ssh/known_hosts || true
-
-    - name: 🔍 Test SSH
-      run: |
-        ssh -p 65002 u128119881@217.21.71.60 "echo connected"
-
-    - name: 📂 Deploy via rsync
-      run: |
-        rsync -avz --delete \
-          --exclude='.git' \
-          --exclude='.github' \
-          --exclude='node_modules' \
-          -e "ssh -p 65002" \
-          ./ \
-          u128119881@217.21.71.60:/public_html/wp-content/plugins/sample-wp-blocks
+    - name: 📂 Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.DEMOS_FTP_HOST }}
+        username: ${{ secrets.DEMOS_FTP_USER }}
+        password: ${{ secrets.DEMOS_FTP_PASSWORD }}
+        server-dir: public_html/wp-content/plugins/sample-wp-blocks
